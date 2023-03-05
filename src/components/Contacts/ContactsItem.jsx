@@ -1,4 +1,4 @@
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export const ContactsItem = ({item, onDelete})=> {
     return (
@@ -8,10 +8,11 @@ export const ContactsItem = ({item, onDelete})=> {
         </div>     
 )}
 
-// ContactsItem.propTypes = {
-//     item: PropTypes.shape({
-//         name: PropTypes.string.isRequired,
-//         number: PropTypes.number.isRequired,
-//       }).isRequired,
-//     onDelete: PropTypes.func.isRequired
-// }
+ContactsItem.propTypes = {
+    item: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+      }).isRequired,
+    onDelete: PropTypes.func.isRequired,
+}

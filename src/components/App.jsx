@@ -38,7 +38,7 @@ deleteContact = (contactId) => {
 })};
 
 changeFilter = (event) => {
-  this.setState({filter: event.currentTarget.value} )
+  this.setState({filter: event.currentTarget.value});
 };
 
 render(){
