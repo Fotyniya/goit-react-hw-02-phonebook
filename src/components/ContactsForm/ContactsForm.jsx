@@ -1,4 +1,6 @@
+import { nanoid } from "nanoid";
 import { Component } from "react";
+import {FormContainer, FormLabel } from "../ContactsForm/ContactsForm.styled"
 
 export class ContactsForm extends Component {
   state = {
@@ -7,14 +9,16 @@ export class ContactsForm extends Component {
   };
 
   handleChange = event => {
+    
     this.setState({
-      [event.currentTarget.name]: event.currentTarget.value
+      [event.currentTarget.name]: event.currentTarget.value,
+      id: nanoid(),
     })
   };
 
   handleSubmit = event => {
-    event.preventDefault();
     console.log(this.state)
+    event.preventDefault();
     this.props.onSubmit (this.state);
     this.reset();
   };
@@ -28,60 +32,18 @@ export class ContactsForm extends Component {
 
   render () {
     return (
-      <form onSubmit={this.handleSubmit}>
-      <label>
+      
+      <FormContainer onSubmit={this.handleSubmit}>
+      <FormLabel>
         Name
       <input type="text" name='name' value={this.state.name} onChange = {this.handleChange}/>
-      </label>
-      <label>
+      </FormLabel>
+      <FormLabel>
         Number
         <input type="tel" name='number' value={this.state.number} onChange = {this.handleChange}/>
-      </label>
-      <button type="submit">Add contact</button>
-      </form>
+      </FormLabel>
+        <button type="submit">Add contact</button>
+      </FormContainer>
     )
   }
 }
-// import { Formik, Field, Form } from 'formik';
-// import { nanoid } from 'nanoid';
-// import { FormField, FormContainer, Button, ErrorMessage } from './ContactsForm.styled'
-// import * as Yup from 'yup';
-
-// const ContactsFormSchema = Yup.object().shape({
-//   name: Yup.string()
-//   .min(2, 'Too Short!')
-//   .max(50, 'Too Long!')
-//   .required('Required'),
-// });
-// export const ContactsForm = ({onSubmit}) => {
-// return <div>
-//   <h1>Phonebook</h1>
-// <FormContainer>
-//     <Formik
-//       initialValues={{
-//         contacts: [],
-//         name: '',
-//       }}
-//       validationSchema={ContactsFormSchema}
-//       onSubmit={(values) => {
-//         console.log(values)
-//         onSubmit({
-//           ...values,
-//           id: nanoid(),
-//         })
-//       }}
-//       >
-//         <Form>
-//             <FormField>
-//                 Name
-//                 <Field name="name" placeholder="Name"/>
-//                 <ErrorMessage name="name" component='span'/>
-//             </FormField>
-            
-//             <Button type="submit">Add contact</Button>
-//         </Form>
-//     </Formik>
-    
-// </FormContainer>
-//   </div>
-// }
